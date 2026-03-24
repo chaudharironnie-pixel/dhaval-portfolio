@@ -1,0 +1,162 @@
+.resume-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.4rem;
+}
+
+/* ── Mock PDF preview ─────────────────────────────────────────── */
+.resume-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.resume-preview-inner {
+  width: 100%;
+  background: #161616;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border: 1px solid #2e2e2e;
+}
+
+.resume-page-mock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mock-line {
+  height: 7px;
+  background: #2e2e2e;
+  border-radius: 4px;
+  width: 100%;
+  animation: shimmer 2s infinite;
+}
+
+.mock-line--title {
+  height: 11px;
+  width: 55%;
+  background: #3a3a3a;
+}
+
+.mock-line--sub {
+  height: 7px;
+  width: 75%;
+}
+
+.mock-line--short {
+  width: 45%;
+}
+
+.mock-divider {
+  height: 1px;
+  background: #2e2e2e;
+  margin: 0.3rem 0;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.resume-preview-label {
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Body ─────────────────────────────────────────────────────── */
+.resume-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.resume-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.resume-role {
+  font-size: 0.82rem;
+  color: #cc0000;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.2rem;
+}
+
+.resume-highlights {
+  list-style: none;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.resume-highlights li {
+  font-size: 0.8rem;
+  color: #666;
+  padding-left: 0.8rem;
+  position: relative;
+}
+
+.resume-highlights li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #cc0000;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.resume-actions {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.resume-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, opacity 0.2s, background 0.2s;
+  flex: 1;
+  justify-content: center;
+}
+
+.resume-btn:hover {
+  transform: translateY(-3px);
+}
+
+.resume-btn--view {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #3a3a3a;
+}
+
+.resume-btn--view:hover {
+  background: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+.resume-btn--download {
+  background: #cc0000;
+  color: #fff;
+  border: 1px solid #cc0000;
+  box-shadow: 0 4px 16px rgba(200,0,0,0.35);
+}
+
+.resume-btn--download:hover {
+  background: #e53935;
+  box-shadow: 0 6px 20px rgba(200,0,0,0.5);
+}

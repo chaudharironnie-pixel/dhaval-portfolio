@@ -2,8 +2,8 @@ import React from 'react';
 import '../styles/Education.css';
 
 const edu = [
-  { degree: 'Master of Computer Application', uni: 'Sardar Patel University', year: '2024-2026' },
-  { degree: 'Bachelor of Computer Application', uni: 'Veer Narmad South Gujarat University', year: '2021-2024' },
+  { degree: 'Master of Computer Application', uni: 'Sardar Patel University', year: '2024-2026', url: 'https://www.spuvvn.edu/' },
+  { degree: 'Bachelor of Computer Application', uni: 'Veer Narmad South Gujarat University', year: '2021-2024', url: 'http://www.vnsgu.ac.in/' },
 ];
 
 function Education() {
@@ -14,7 +14,9 @@ function Education() {
           <div className="edu-row">
             <div>
               <h3 className="edu-degree">{e.degree}</h3>
-              <p className="edu-uni">{e.uni}</p>
+              <p className="edu-uni">
+                <a href={e.url} target="_blank" rel="noreferrer" className="edu-uni-link">{e.uni}</a>
+              </p>
             </div>
             <span className="edu-year-badge">{e.year}</span>
           </div>

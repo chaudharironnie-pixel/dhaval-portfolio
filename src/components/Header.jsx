@@ -161,8 +161,8 @@ function Header() {
         {/* Right — photo */}
         <div className="hero-right">
           <img
-            src="/dhaval.jpg"
-            alt="Dhaval Chuadhari"
+            src="/dhaval.png"
+            alt="Dhaval Chaudhari"
             className="hero-photo"
             onError={(e) => {
               e.target.style.display = 'none';

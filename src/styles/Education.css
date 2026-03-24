@@ -24,6 +24,17 @@
   margin-top: 0.25rem;
 }
 
+.edu-uni-link {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.edu-uni-link:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
 .edu-year-badge {
   background: #2a2a2a;
   color: #aaa;

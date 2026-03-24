@@ -109,7 +109,7 @@
   min-height: 540px;
   background: #141414;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-items: stretch;
   border: 1px solid #1f1f1f;
@@ -294,28 +294,26 @@
 .hero-right {
   position: relative;
   z-index: 3;
-  width: 360px;
+  width: 380px;
   flex-shrink: 0;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 105%;
+  width: auto;
+  max-width: 420px;
+  object-fit: contain;
+  object-position: bottom center;
   display: block;
-  -webkit-mask-image:
-    linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-  -webkit-mask-composite: destination-in;
-  mask-image:
-    linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-  mask-composite: intersect;
+  filter: drop-shadow(-20px 0px 40px rgba(0,0,0,0.8));
+  z-index: 3;
 }
 
 .hero-photo-fallback {
@@ -332,12 +330,12 @@
 .hero-photo-glow {
   position: absolute;
   bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 240px;
-  height: 100px;
-  background: radial-gradient(ellipse, rgba(160,0,0,0.35) 0%, transparent 70%);
+  right: 80px;
+  width: 280px;
+  height: 120px;
+  background: radial-gradient(ellipse, rgba(160,0,0,0.45) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 2;
 }
 
 /* ── Interests bar ────────────────────────────────────────────── */

@@ -1,32 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Resume.css';
 
 function Resume() {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <div className="dark-card resume-card">
-      {/* Preview thumbnail */}
+
+      {/* Actual PDF preview */}
       <div className="resume-preview">
-        <div className="resume-preview-inner">
-          <div className="resume-page-mock">
-            <div className="mock-line mock-line--title" />
-            <div className="mock-line mock-line--sub" />
-            <div className="mock-divider" />
-            <div className="mock-line" />
-            <div className="mock-line mock-line--short" />
-            <div className="mock-line" />
-            <div className="mock-divider" />
-            <div className="mock-line mock-line--short" />
-            <div className="mock-line" />
-            <div className="mock-line mock-line--short" />
+        {!loaded && (
+          <div className="resume-loading">
+            <div className="resume-spinner" />
+            <span>Loading preview...</span>
           </div>
-        </div>
-        <div className="resume-preview-label">PDF Preview</div>
+        )}
+        <iframe
+          src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+          className="resume-iframe"
+          title="Resume Preview"
+          onLoad={() => setLoaded(true)}
+          style={{ display: loaded ? 'block' : 'none' }}
+        />
       </div>
 
-      {/* Info */}
+      {/* Info + buttons */}
       <div className="resume-body">
         <div className="resume-meta">
-          <h3 className="resume-name">Dhaval Chuadhari</h3>
+          <h3 className="resume-name">Dhaval Chaudhari</h3>
           <p className="resume-role">Full Stack Developer</p>
           <ul className="resume-highlights">
             <li>MERN Stack Developer</li>
@@ -36,7 +37,6 @@ function Resume() {
           </ul>
         </div>
 
-        {/* Actions */}
         <div className="resume-actions">
           <a
             href="/resume.pdf"
@@ -48,7 +48,7 @@ function Resume() {
           </a>
           <a
             href="/resume.pdf"
-            download="Dhaval_Chuadhari_Resume.pdf"
+            download="Dhaval_Chaudhari_Resume.pdf"
             className="resume-btn resume-btn--download"
           >
             <span>⬇</span> Download PDF

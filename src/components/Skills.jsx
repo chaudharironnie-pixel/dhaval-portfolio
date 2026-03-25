@@ -53,8 +53,6 @@ const skillRows = [
 ];
 
 function SkillIcon({ name, src, color, url }) {
-  const fallback = src.replace('-original.svg', '-plain.svg');
-
   return (
     <a
       className="skill-icon-wrap"

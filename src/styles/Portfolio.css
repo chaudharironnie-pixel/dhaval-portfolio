@@ -478,7 +478,7 @@ html, body, #root {
 
   /* Hero name area — push up above bottom nav */
   .pf-hero-identity {
-    bottom: 80px;
+    bottom: 120px;
     left: 16px;
     right: 16px;
   }

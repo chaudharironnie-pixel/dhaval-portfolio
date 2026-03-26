@@ -51,7 +51,7 @@ function Contact() {
 
       <div className="contact-body">
         {/* Form */}
-        <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
+        <form className="contact-form" onSubmit={handleSubmit}>
           <div className="contact-row">
             <input
               className="contact-input"

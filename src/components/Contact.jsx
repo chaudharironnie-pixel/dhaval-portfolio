@@ -29,12 +29,11 @@ function Contact() {
       EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' ||
       EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'
     ) {
-    // Open Gmail compose directly for the visitor (pre-filled)
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=chaudharidhaval00@gmail.com&su=${encodeURIComponent(`[Portfolio] ${form.subject}`)}&body=${encodeURIComponent(`Hi Dhaval,\n\nName: ${form.from_name}\nEmail: ${form.from_email}\n\n${form.message}`)}`;
-    window.open(gmailUrl, '_blank', 'width=800,height=600,noopener,noreferrer');
-    setStatus('sent');
-    setTimeout(() => { setStatus('idle'); setForm({ from_name: '', from_email: '', subject: '', message: '' }); }, 3000);
-    return;
+      const mailTo = `https://mail.google.com/mail/?view=cm&to=chaudharidhaval00@gmail.com&su=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Name: ${form.from_name}\nEmail: ${form.from_email}\n\n${form.message}`)}`;
+      window.open(mailTo, '_blank');
+      setStatus('sent');
+      setTimeout(() => { setStatus('idle'); setForm({ from_name: '', from_email: '', subject: '', message: '' }); }, 3000);
+      return;
     }
 
     setStatus('sending');

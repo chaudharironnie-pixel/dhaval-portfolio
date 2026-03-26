@@ -98,36 +98,19 @@ function Portfolio() {
         ))}
       </svg>
 
-      {/* ══ Nav dots overlaid on mosaic (desktop) ══ */}
-      <div className="pf-desktop-nav">
-        {NAV_NODES.map(({ id, label, num, x, y }) => (
-          <button
-            key={id}
-            className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
-            style={{ left: `${x}%`, top: `${y}%` }}
-            onClick={() => activeTab === id ? closeTab() : openTab(id)}
-          >
-            <span className="pf-nav-num">{num}</span>
-            <span className="pf-nav-label">{label}</span>
-            <span className="pf-nav-dot" />
-          </button>
-        ))}
-      </div>
-
-      {/* ══ Mobile bottom tab bar ══ */}
-      <div className="pf-mobile-nav">
-        {NAV_NODES.map(({ id, label, num }) => (
-          <button
-            key={id}
-            className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
-            onClick={() => activeTab === id ? closeTab() : openTab(id)}
-          >
-            <span className="pf-nav-num">{num}</span>
-            <span className="pf-nav-label">{label}</span>
-            <span className="pf-nav-dot" />
-          </button>
-        ))}
-      </div>
+      {/* ══ Nav dots overlaid on mosaic ══ */}
+      {NAV_NODES.map(({ id, label, num, x, y }) => (
+        <button
+          key={id}
+          className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
+          style={{ left: `${x}%`, top: `${y}%` }}
+          onClick={() => activeTab === id ? closeTab() : openTab(id)}
+        >
+          <span className="pf-nav-num">{num}</span>
+          <span className="pf-nav-label">{label}</span>
+          <span className="pf-nav-dot" />
+        </button>
+      ))}
 
       {/* ══ Name & tagline (bottom-left) ══ */}
       <div className="pf-hero-identity">
@@ -314,6 +297,26 @@ function Portfolio() {
 
       {/* Backdrop when panel is open (click to close) */}
       {activeTab && <div className="pf-backdrop" onClick={closeTab} />}
+
+      {/* ══ MOBILE BOTTOM NAV BAR ══ */}
+      <nav className="pf-mobile-nav">
+        {[
+          { id: 'About',   label: 'About',   icon: '👤' },
+          { id: 'Skills',  label: 'Skills',  icon: '⚡' },
+          { id: 'Work',    label: 'Work',    icon: '💼' },
+          { id: 'Contact', label: 'Contact', icon: '✉️' },
+        ].map(({ id, label, icon }) => (
+          <button
+            key={id}
+            className={`pf-mobile-nav-btn ${activeTab === id ? 'pf-mobile-nav-btn--active' : ''}`}
+            onClick={() => activeTab === id ? closeTab() : openTab(id)}
+          >
+            <span className="pf-mobile-nav-icon">{icon}</span>
+            <span className="pf-mobile-nav-label">{label}</span>
+            <span className="pf-mobile-nav-dot" />
+          </button>
+        ))}
+      </nav>
     </div>
   );
 }

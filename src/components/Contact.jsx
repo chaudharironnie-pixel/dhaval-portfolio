@@ -1,53 +1,43 @@
-import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 import '../styles/Contact.css';
 
-// ─── EmailJS Config ────────────────────────────────────────────────────────
-// 1. Sign up at https://www.emailjs.com (free)
-// 2. Add a Gmail service → copy "Service ID" below
-// 3. Create a template with variables: {{from_name}}, {{from_email}}, {{subject}}, {{message}}
-//    → copy "Template ID" below
-// 4. Go to Account → Public Key → copy below
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz456'
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';   // e.g. 'abcDEF123456'
-// ────────────────────────────────────────────────────────────────────────────
+const WEB3FORMS_KEY = '77bd05e5-8c77-40a9-a8cc-cb194bf6f39f';
 
 function Contact() {
-  const formRef = useRef(null);
   const [form, setForm] = useState({ from_name: '', from_email: '', subject: '', message: '' });
-  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'sent' | 'error'
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // If EmailJS not configured yet, fall back to Gmail compose
-    if (
-      EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' ||
-      EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' ||
-      EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'
-    ) {
-      const mailTo = `https://mail.google.com/mail/?view=cm&to=chaudharidhaval00@gmail.com&su=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Name: ${form.from_name}\nEmail: ${form.from_email}\n\n${form.message}`)}`;
-      window.open(mailTo, '_blank');
-      setStatus('sent');
-      setTimeout(() => { setStatus('idle'); setForm({ from_name: '', from_email: '', subject: '', message: '' }); }, 3000);
-      return;
-    }
-
     setStatus('sending');
-    emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
-      .then(() => {
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: form.from_name,
+          email: form.from_email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
         setStatus('sent');
         setForm({ from_name: '', from_email: '', subject: '', message: '' });
         setTimeout(() => setStatus('idle'), 4000);
-      })
-      .catch(() => {
+      } else {
         setStatus('error');
         setTimeout(() => setStatus('idle'), 4000);
-      });
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
   };
 
   return (

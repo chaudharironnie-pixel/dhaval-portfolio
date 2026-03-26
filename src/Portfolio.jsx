@@ -98,19 +98,36 @@ function Portfolio() {
         ))}
       </svg>
 
-      {/* ══ Nav dots overlaid on mosaic ══ */}
-      {NAV_NODES.map(({ id, label, num, x, y }) => (
-        <button
-          key={id}
-          className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
-          style={{ left: `${x}%`, top: `${y}%` }}
-          onClick={() => activeTab === id ? closeTab() : openTab(id)}
-        >
-          <span className="pf-nav-num">{num}</span>
-          <span className="pf-nav-label">{label}</span>
-          <span className="pf-nav-dot" />
-        </button>
-      ))}
+      {/* ══ Nav dots overlaid on mosaic (desktop) ══ */}
+      <div className="pf-desktop-nav">
+        {NAV_NODES.map(({ id, label, num, x, y }) => (
+          <button
+            key={id}
+            className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
+            style={{ left: `${x}%`, top: `${y}%` }}
+            onClick={() => activeTab === id ? closeTab() : openTab(id)}
+          >
+            <span className="pf-nav-num">{num}</span>
+            <span className="pf-nav-label">{label}</span>
+            <span className="pf-nav-dot" />
+          </button>
+        ))}
+      </div>
+
+      {/* ══ Mobile bottom tab bar ══ */}
+      <div className="pf-mobile-nav">
+        {NAV_NODES.map(({ id, label, num }) => (
+          <button
+            key={id}
+            className={`pf-nav-node ${activeTab === id ? 'pf-nav-node--active' : ''}`}
+            onClick={() => activeTab === id ? closeTab() : openTab(id)}
+          >
+            <span className="pf-nav-num">{num}</span>
+            <span className="pf-nav-label">{label}</span>
+            <span className="pf-nav-dot" />
+          </button>
+        ))}
+      </div>
 
       {/* ══ Name & tagline (bottom-left) ══ */}
       <div className="pf-hero-identity">

@@ -1,0 +1,141 @@
+.contact-section {
+  padding: 2rem 0;
+}
+
+.contact-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.contact-sub {
+  color: #888;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.contact-body {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* ── Form ── */
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.contact-input {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.contact-input:focus {
+  border-color: #cc0000;
+}
+
+.contact-input::placeholder {
+  color: #555;
+}
+
+.contact-input--full {
+  width: 100%;
+}
+
+.contact-textarea {
+  resize: none;
+  height: 130px;
+}
+
+.contact-send-btn {
+  align-self: flex-start;
+  background: #fff;
+  color: #111;
+  border: none;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.contact-send-btn:hover:not(:disabled) {
+  background: #cc0000;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.contact-send-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.contact-send-btn--sending { background: #444; color: #aaa; }
+.contact-send-btn--sent    { background: #22c55e; color: #fff; }
+.contact-send-btn--error   { background: #cc0000; color: #fff; }
+
+/* ── Info ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 180px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.contact-info-icon {
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+}
+
+.contact-info-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #cc0000;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.contact-info-val {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.contact-info-link {
+  font-size: 0.8rem;
+  color: #61dafb;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-info-link:hover {
+  color: #cc0000;
+}
+
+@media (max-width: 600px) {
+  .contact-body { flex-direction: column; }
+  .contact-row { grid-template-columns: 1fr; }
+}

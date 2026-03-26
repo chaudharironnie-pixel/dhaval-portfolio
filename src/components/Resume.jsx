@@ -11,7 +11,7 @@ function Resume() {
       <div className="resume-preview">
         {!loaded && (
           <div className="resume-loading">
-            {/* <div className="resume-spinner" /> */}
+            <div className="resume-spinner" />
             <span>Loading preview...</span>
           </div>
         )}

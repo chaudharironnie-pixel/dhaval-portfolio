@@ -338,55 +338,21 @@ html, body, #root {
 .pf-section {
   padding-bottom: 3rem;
   animation: slideUp 0.35s ease;
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-.pf-section:hover {
-  transform: scale(1.01);
-  box-shadow: 0 10px 40px rgba(0, 198, 255, 0.12);
 }
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Section Title — premium gradient + animated underline ── */
 .pf-section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  color: transparent;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  font-size: 1.5rem; font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #fff 60%, rgba(255,255,255,0.6));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
-.pf-section-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 0%;
-  height: 3px;
-  background: #00c6ff;
-  transition: width 0.4s ease;
-}
-.pf-section-title:hover::after {
-  width: 100%;
-}
-
-/* ── Section Description Text ── */
-.pf-section-text {
-  font-size: 1rem;
-  color: #b0b0b0;
-  line-height: 1.8;
-  max-width: 600px;
-  letter-spacing: 0.5px;
-}
-
 .pf-section-sub {
   font-size: 0.65rem; font-weight: 800;
   letter-spacing: 2.5px; color: #e53935;
@@ -397,41 +363,6 @@ html, body, #root {
   height: 1px;
   background: linear-gradient(to right, #2a2a2a, transparent);
   margin: 1.5rem 0;
-}
-
-/* ── Animated Text Reveal ── */
-.reveal-text {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: reveal 1s ease forwards;
-}
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── Gradient Border Card ── */
-.pf-card {
-  padding: 20px;
-  border-radius: 15px;
-  background: #111;
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-.pf-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 15px;
-  padding: 1px;
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 
 /* About */

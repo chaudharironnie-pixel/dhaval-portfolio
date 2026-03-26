@@ -449,10 +449,10 @@ html, body, #root {
 .pf-msg-btn:hover { background: #cc0000; color: #fff; border-color: #cc0000; }
 
 /* ═══════════════════════════════════
-   BOTTOM MOBILE NAV BAR
+   HERO INLINE NAV (mobile only, below socials)
 ═══════════════════════════════════ */
-.pf-mobile-nav {
-  display: none;
+.pf-hero-nav {
+  display: none; /* hidden on desktop */
 }
 
 /* ═══════════════════════════════════
@@ -553,7 +553,54 @@ html, body, #root {
     flex-shrink: 0;
   }
 
-  /* ── Top Nav Bar ── */
+  /* Hide the separate top nav bar — nav is now inline */
+  .pf-mobile-nav { display: none !important; }
+
+  /* Inline hero nav — show on mobile */
+  .pf-hero-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .pf-hero-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    padding: 0;
+  }
+
+  .pf-hero-nav-num {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 2px;
+  }
+
+  .pf-hero-nav-label {
+    font-size: 0.92rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+    transition: color 0.2s;
+  }
+
+  .pf-hero-nav-btn--active .pf-hero-nav-label,
+  .pf-hero-nav-btn:hover .pf-hero-nav-label {
+    color: #00c6ff;
+  }
+
+  .pf-hero-nav-btn--active .pf-hero-nav-num {
+    color: rgba(0,198,255,0.6);
+  }
+
+  /* ── Top Nav Bar (now hidden, kept for tablet) ── */
   .pf-mobile-nav {
     display: flex;
     position: fixed;

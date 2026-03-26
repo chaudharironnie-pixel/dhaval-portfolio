@@ -134,6 +134,20 @@ function Portfolio() {
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.9.732-1.636 1.636-1.636h.749L12 10.09l9.615-6.269h.749A1.636 1.636 0 0124 5.457z"/></svg>
           </a>
         </div>
+
+        {/* Inline nav — mobile only, below socials */}
+        <div className="pf-hero-nav">
+          {NAV_NODES.map(({ id, label, num }) => (
+            <button
+              key={id}
+              className={`pf-hero-nav-btn ${activeTab === id ? 'pf-hero-nav-btn--active' : ''}`}
+              onClick={() => activeTab === id ? closeTab() : openTab(id)}
+            >
+              <span className="pf-hero-nav-num">{num}</span>
+              <span className="pf-hero-nav-label">{label}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* ══ SLIDE-IN PANEL ══ */}

@@ -476,9 +476,9 @@ html, body, #root {
   .pf-nav-node { display: none; }
   .pf-lines-svg { display: none; }
 
-  /* Hero name area — push up above bottom nav */
+  /* Hero name area — sits comfortably at the bottom */
   .pf-hero-identity {
-    bottom: 120px;
+    bottom: 32px;
     left: 16px;
     right: 16px;
   }
@@ -491,10 +491,10 @@ html, body, #root {
   .pf-socials { gap: 0.4rem; margin-top: 0.8rem; }
   .pf-social { width: 32px; height: 32px; }
 
-  /* Panel — full screen slide up from bottom */
+  /* Panel — slides up from bottom */
   .pf-panel {
     width: 100vw;
-    height: 92vh;
+    height: calc(100vh - 60px);
     top: auto;
     bottom: 0;
     right: 0;
@@ -551,19 +551,21 @@ html, body, #root {
     flex-shrink: 0;
   }
 
-  /* ── Bottom Nav Bar ── */
+  /* ── Top Nav Bar ── */
   .pf-mobile-nav {
     display: flex;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: auto;
     z-index: 20;
-    background: rgba(10,10,12,0.92);
+    background: rgba(10,10,12,0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-top: none;
+    padding: calc(0.4rem + env(safe-area-inset-top)) 0 0.4rem;
   }
 
   .pf-mobile-nav-btn {

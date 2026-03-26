@@ -476,9 +476,11 @@ html, body, #root {
   .pf-nav-node { display: none; }
   .pf-lines-svg { display: none; }
 
-  /* Hero name area — sits comfortably at the bottom */
+  /* Hero name area — vertically centered, left side */
   .pf-hero-identity {
-    bottom: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
     left: 16px;
     right: 16px;
   }

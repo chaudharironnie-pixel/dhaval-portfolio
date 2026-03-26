@@ -19,6 +19,7 @@ function Contact() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
+          to: 'chaudharidhaval00@gmail.com',
           name: form.from_name,
           email: form.from_email,
           subject: form.subject,

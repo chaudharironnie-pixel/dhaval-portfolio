@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Skills from './components/Skills';
+import Stats from './components/Stats';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Projects from './components/Projects';
@@ -135,6 +136,9 @@ function Portfolio() {
           </a>
         </div>
 
+        {/* ── STATS — always visible on hero ── */}
+        <Stats />
+
         {/* Inline nav — mobile only, below socials */}
         <div className="pf-hero-nav">
           {NAV_NODES.map(({ id, label, num }) => (
@@ -257,7 +261,10 @@ function Portfolio() {
                 </p>
               </div>
 
-              <h3 className="pf-section-sub" style={{ marginTop: '1.8rem' }}>SKILLS</h3>
+              <h3 className="pf-section-sub" style={{ marginTop: '1.8rem' }}>AT A GLANCE</h3>
+              <Stats />
+              <div className="pf-divider" />
+              <h3 className="pf-section-sub">PROFICIENCY</h3>
               <div className="pf-skillbars">
                 {[
                   { label: 'Full Stack Dev', pct: 82 },

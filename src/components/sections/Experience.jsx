@@ -10,7 +10,7 @@ const experiences = [
     company: 'Unified Mentor Pvt. Ltd.',
     companyUrl: 'https://unifiedmentor.com/',
     role: 'MERN Stack Developer Intern',
-    location: 'Remote',
+    location: 'Gurugram, Haryana',
     period: 'May 2026 — Present',
     description: [
       'Developing and maintaining full-stack web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js).',
@@ -21,7 +21,7 @@ const experiences = [
       'Participating in debugging, testing, and performance optimization of web applications.',
       'Following Agile development practices and contributing to real-world projects.',
     ],
-    tags: ['MERN Stack', 'REST APIs', 'React', 'Node.js', 'PostgreSQL'],
+    tags: ['MERN Stack', 'REST APIs', 'React', 'Node.js','Nest.js', 'PostgreSQL'],
   },
   {
     id: 'upsquare',

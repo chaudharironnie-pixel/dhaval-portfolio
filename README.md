@@ -1,6 +1,6 @@
-# About Me - Chaudhary Dhaval (Ronnie)
+# About Me - Dhaval Chaudhari
 
-This is a personal website showcasing information about Chaudhary Dhaval (Ronnie), a MERN Stack Developer.
+This is a personal website showcasing information about Dhaval Chaudhari, a MERN Stack Developer.
 
 ## About
 

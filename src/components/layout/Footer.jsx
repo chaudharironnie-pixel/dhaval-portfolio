@@ -1,4 +1,4 @@
-import { Heart } from 'lucide-react';
+//import { Heart } from 'lucide-react';
 import { personalInfo } from '../../data/portfolio';
 
 export function Footer() {

@@ -8,6 +8,7 @@ const experiences = [
   {
     id: 'unified-mentor',
     company: 'Unified Mentor Pvt. Ltd.',
+    companyUrl: 'https://unifiedmentor.com/',
     role: 'MERN Stack Developer Intern',
     location: 'Remote',
     period: 'May 2026 — Present',
@@ -25,6 +26,7 @@ const experiences = [
   {
     id: 'upsquare',
     company: 'Upsquare Technologies',
+    companyUrl: 'https://upsquaretech.com/',
     role: 'Full Stack Developer Trainee',
     location: 'Ahmedabad, India',
     period: 'Dec 2025 — May 2026',
@@ -115,7 +117,11 @@ export function Experience() {
                       {exp.role}
                     </h3>
                     <div className="mt-1 flex items-center gap-2 text-neon-violet">
-                      <span className="font-medium">{exp.company}</span>
+                      {exp.companyUrl ? (
+                        <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="font-medium transition-colors hover:text-white">{exp.company}</a>
+                      ) : (
+                        <span className="font-medium">{exp.company}</span>
+                      )}
                       <span className="text-slate-500">|</span>
                       <div className="flex items-center gap-1 text-slate-400">
                         <MapPin size={12} />

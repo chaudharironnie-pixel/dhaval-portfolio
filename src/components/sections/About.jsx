@@ -59,7 +59,7 @@ export function About() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Briefcase size={14} />
-                  <span>MERN Stack Developer Intern at Unified Mentor</span>
+                  <span>MERN Stack Developer Intern at <a href="https://unifiedmentor.com/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neon-violet">Unified Mentor</a></span>
                 </div>
               </div>
 
@@ -115,7 +115,7 @@ export function About() {
                 </div>
                 <h4 className="font-display font-semibold text-white">Current Role</h4>
                 <p className="mt-1 text-sm text-slate-400">
-                  MERN Stack Developer Intern building full-stack web applications at Unified Mentor.
+                  MERN Stack Developer Intern building full-stack web applications at <a href="https://unifiedmentor.com/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neon-violet">Unified Mentor</a>.
                 </p>
               </Card>
             </div>

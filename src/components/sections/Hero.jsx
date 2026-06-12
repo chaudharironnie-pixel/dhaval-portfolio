@@ -87,7 +87,7 @@ export function Hero() {
         >
           MERN Stack Developer building scalable REST APIs & modern web applications.
           Currently gaining industry experience through internships at{' '}
-          <span className="text-white">Unified Mentor Pvt. Ltd.</span>.
+          <a href="https://unifiedmentor.com/" target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-neon-violet">Unified Mentor Pvt. Ltd.</a>.
         </motion.p>
 
         <motion.div

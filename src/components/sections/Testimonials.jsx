@@ -41,7 +41,20 @@ export function Testimonials() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">{testimonials[current].name}</h4>
-                    <p className="text-sm text-slate-400">{testimonials[current].role}</p>
+                    {(() => {
+                      const t = testimonials[current];
+                      if (t.companyUrl) {
+                        const parts = t.role.split(', ');
+                        const company = parts.pop();
+                        return (
+                          <p className="text-sm text-slate-400">
+                            {parts.join(', ')}{parts.length > 0 ? ', ' : ''}
+                            <a href={t.companyUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neon-violet">{company}</a>
+                          </p>
+                        );
+                      }
+                      return <p className="text-sm text-slate-400">{t.role}</p>;
+                    })()}
                   </div>
                 </div>
               </Card>

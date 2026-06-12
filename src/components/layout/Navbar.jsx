@@ -50,7 +50,7 @@ export function Navbar({ activeSection }) {
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neon-violet to-neon-indigo font-display font-bold text-white transition-transform group-hover:scale-110">
                 DC
               </span>
-              <span className="hidden font-display font-semibold sm:inline">Dhaval</span>
+              <span className="hidden font-display font-semibold sm:inline"></span>
             </button>
 
             {/* Desktop Nav */}

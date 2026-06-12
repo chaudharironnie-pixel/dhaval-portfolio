@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { CustomCursor } from './components/layout/CustomCursor';
+import { PageLoader } from './components/layout/PageLoader';
 import { Particles } from './components/layout/Particles';
 import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
@@ -34,6 +35,12 @@ function ScrollProgress() {
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const sections = navLinks.map((l) => l.id);
@@ -65,6 +72,8 @@ function App() {
         <meta property="og:title" content={`${personalInfo.fullName} | ${personalInfo.title}`} />
         <meta property="og:description" content={`${personalInfo.title} specializing in MERN stack & scalable APIs`} />
       </Helmet>
+
+      <PageLoader isLoading={loading} />
 
       <div className="relative min-h-screen bg-dark-950 text-slate-50">
         <ScrollProgress />

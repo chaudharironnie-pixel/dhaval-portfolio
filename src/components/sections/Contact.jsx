@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Instagram } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/portfolio';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Card } from '../ui/Card';
@@ -14,30 +13,75 @@ const socialLinks = [
   { icon: Instagram, href: personalInfo.social.instagram, label: 'Instagram' },
 ];
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateField(name, value) {
+  switch (name) {
+    case 'name':
+      return value.trim().length < 2 ? 'Name must be at least 2 characters' : '';
+    case 'email':
+      return !EMAIL_REGEX.test(value) ? 'Please enter a valid email address' : '';
+    case 'message':
+      return value.trim().length < 10 ? 'Message must be at least 10 characters' : '';
+    default:
+      return '';
+  }
+}
+
 export function Contact() {
-  const formRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (value.trim()) {
+      setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key]);
+      if (error) newErrors[key] = error;
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
+
     setStatus('sending');
 
     try {
-      await emailjs.sendForm(
-        'service_default',
-        'template_default',
-        formRef.current,
-        'public_key_default'
-      );
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.REACT_APP_WEB3FORMS_KEY,
+          subject: `Portfolio Contact: Message from ${formData.name}`,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to send');
+
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('EmailJS error:', error);
+    } catch {
       setStatus('error');
     }
 
@@ -135,7 +179,7 @@ export function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-3">
             <Card className="p-6 md:p-8">
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
@@ -145,12 +189,20 @@ export function Contact() {
                       type="text"
                       id="name"
                       name="name"
-                      required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:border-neon-violet/50 focus:ring-2 focus:ring-neon-violet/20"
+                      onBlur={handleBlur}
+                      className={cn(
+                        'w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:ring-2',
+                        errors.name
+                          ? 'border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20'
+                          : 'border-white/10 focus:border-neon-violet/50 focus:ring-neon-violet/20'
+                      )}
                       placeholder="John Doe"
                     />
+                    {errors.name && (
+                      <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
@@ -160,12 +212,20 @@ export function Contact() {
                       type="email"
                       id="email"
                       name="email"
-                      required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:border-neon-violet/50 focus:ring-2 focus:ring-neon-violet/20"
+                      onBlur={handleBlur}
+                      className={cn(
+                        'w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:ring-2',
+                        errors.email
+                          ? 'border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20'
+                          : 'border-white/10 focus:border-neon-violet/50 focus:ring-neon-violet/20'
+                      )}
                       placeholder="john@example.com"
                     />
+                    {errors.email && (
+                      <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -176,13 +236,21 @@ export function Contact() {
                   <textarea
                     id="message"
                     name="message"
-                    required
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:border-neon-violet/50 focus:ring-2 focus:ring-neon-violet/20"
+                    onBlur={handleBlur}
+                    className={cn(
+                      'w-full resize-none rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:ring-2',
+                      errors.message
+                        ? 'border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20'
+                        : 'border-white/10 focus:border-neon-violet/50 focus:ring-neon-violet/20'
+                    )}
                     placeholder="Tell me about your project..."
                   />
+                  {errors.message && (
+                    <p className="mt-1.5 text-xs text-red-400">{errors.message}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
@@ -223,7 +291,7 @@ export function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-sm font-medium text-emerald-400"
                   >
-                    ✅ Message sent successfully! I'll get back to you soon.
+                    Message sent successfully! I'll get back to you soon.
                   </motion.p>
                 )}
                 {status === 'error' && (
@@ -232,7 +300,10 @@ export function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-sm font-medium text-red-400"
                   >
-                    ❌ Something went wrong. Please email me directly at {personalInfo.email}
+                    Something went wrong. Please email me directly at{' '}
+                    <a href={personalInfo.social.email} className="underline transition-colors hover:text-neon-violet">
+                      {personalInfo.email}
+                    </a>
                   </motion.p>
                 )}
               </form>
